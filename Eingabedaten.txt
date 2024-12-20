@@ -1,0 +1,78 @@
+# In dieser Datei werden die Eingabeparameter zum Erzeugen einer Kugelpackung bestimmt.
+# Das Programm liest die Eingabeparameter aus dieser Datei.
+#
+# Es können Kugelpackungen aus Kugeln unterschiedlicher Größe erzeugt werden, die einer vorgegebenen Größenverteilung folgen (Beta- oder 
+# Gleichverteilung), oder Kugelpackungen aus Kugeln gleicher Größe (minimaler Radius = maximaler Radius)  
+#
+# Beim Generieren einer Kugelpackung als Bildserie werden in einem dreidimensionalen Raum Kugeln erzeugt.
+# Auf der untersten Ebene werden gleichgroße Kugeln in zufälligen Abständen nahezu gleichmäßig in versetzten Reihen angeordnet.
+# Dann wird eine Liste möglicher Kugelpositionen (Pockets) erstellt. 
+# Pockets sind Stellen, an denen eine neue Kugel genau drei bereits existierende Kugeln berühren würde 
+# ohne dabei in andere Kugeln hineinzuragen oder mit dem Mittelpunkt außerhalb der Systemgrenzen zu liegen.
+# Dann beginnt eine Schleife: Aus der Pocketliste wird die niedrigste Pocket ausgewählt.
+# Hier wird eine Kugel platziert.
+# Daraufhin muss die Pocketliste aktualisiert werden. 
+# Alle nicht mehr möglichen Pockets werden gelöscht, Pockets, die sich neu ergeben, werden hinzugefügt. 
+# Dieser Vorgang wird solange wiederholt bis die Pocketliste leer und der Raum mit Kugeln gefüllt ist.
+#
+# Zu den Eingabeparametern gehören:
+# - die Raumgröße (in x-, y- und z-Richtung) (int)
+# - der Kugelradius als Mindestgröße für eine Kugel (double)
+# - ein Epsilon als Abstand zwischen den Kugeln der untersten Schicht (double)
+# - ein optionaler Suffix für die Ordnerbezeichnung, in dem die Bildserie abgespeichert wird (String)
+# - Anzahl Testpunkte auf einer Kugeloberfläche beim Monte-Carlo-Algorithmus 
+#   zur Bestimmung der spezifischen Oberfläche (int)
+# - logischer Wert, der angibt, ob die Kugeln vergrößert werden sollen, um eine gewünschte Porosität zu erreichen (boolean)
+# - eine Zielporosität (double)
+# - die max. Anzahl der Schleifendurchläufe beim Erreichen der Zielporosität (int)
+# - Anzahl Kugelpackungen, die mit den angegeben Eingabeparametern erzeugt werden sollen (int)
+#
+#
+# Anzahl Kugelpackungen:
+n: 5
+# Raumgroesse
+# x-Richtung (int breite > 0)
+breite: 200
+# y-Richtung (int hoehe > 0)
+hoehe: 200
+# z-Richtung (int tiefe > 0)
+tiefe: 200
+#
+# minimaler Kugelradius (double radius > 0)
+minimaler Radius: 7
+# maximaler Kugelradius (double radius > 0)
+maximaler Radius: 10
+#
+# Abstand zwischen den Kugeln der untersten Ebene (double eps > 0)
+eps: 0.2
+# maximal erlaubter relativer Überlapp der Kugeln
+prozentualer Überlapp: 0.1
+#
+# Verteilung der Radien
+# uniform: Gleichverteilung im Intervall [minRadius, maxRadius]
+# beta: Beta-Verteilung im Intervall [minRadius, maxRadius] mit den Parametern p und q (p, q > 0)
+Verteilung: uniform
+#
+Beta-Verteilung p: 2
+Beta-Verteilung q: 2
+#
+#
+# Ordnerbezeichnung (String suffix optional)
+suffix: ovl010
+#
+# Anzahl Testpunkte pro Kugel beim Monte-Carlo-Algorithmus (int testpkt > 0)
+testpkt: 500
+#
+# Sollen die Kugeln zufällig vergrößert werden bis eine festgelegte Porosität erreicht ist? (boolean reachPorosity)
+# true: Zielporositaet soll erreicht werden
+# alles anderen Eingaben ergeben false
+reachPorosity: false
+# 
+# Zielporosität (double zielporositaet > 0 && zielporositaet < 1) - !nur relevant, wenn reachPorosity = true!
+zielporositaet: 0.27
+#
+# max. Anzahl Schleifendurchläufe beim Erreichen der Zielporosität (int maxN > 0)
+# - !nur relevant, wenn reachPorosity = true!
+# - !wenn Programm endet, ohne dass Zielporosität erreicht wird, kann dieser Wert erhöht werden!
+maxN: 50
+
