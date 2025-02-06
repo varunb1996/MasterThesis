@@ -18,12 +18,12 @@ such as sphere diameter, base distance, and porosity are employed to create a th
 micro-structure through stochastic methods. This generates artificial structures represented by 
 the black and white image series which would be further used for simulation.
 40 data points are generated with 200 images per data point. But this is not enough hence, augmentation is performed to obtain 320 data points with 200 images per data point. the oroginal 40 data points are uploaded here 
-but the augmented images are not added because they are too big and cannot be uploaded.
+but the augmented images are not added because they are too big and cannot be uploaded. So each data point has 200 images so for 320 images there are 64000 images.
 
 LATTICE BOLTZMANN METHOD (LBM) SIMULATION:
 Palabos was used to perform the LBM simulations on the original 40 data points to obtain permeability value (the augmented points will have the same permeability as the original data points).
 
 ML ALGORITHM:
-A CNN was trained to obtain predict the permeability value of the micro-structures. k-fold Cross validation method used to validate the model.
+A CNN was trained to predict the permeability value of the micro-structures. k-fold Cross validation method used to validate the model.
 Various hyper-parameter tuning methods were used. A validation accuracy of 95% achieved with such less data.
 
